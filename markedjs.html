@@ -36,6 +36,8 @@
         return a
     }
     console.log(getAccess())
+
+
     function changePath(res){
         let c = 'adfsadfasfdsadfadf'
         c = c.replace(/sa/g, '我我')
@@ -54,6 +56,7 @@
         url: './md/NodeJs/NodeJs.md'
         ,success:function (res) {
             console.log(res)
+            res = res.replace(/]\(/g,'](./NodeJs/images')
             document.getElementById('content').innerHTML = marked(res)
         }
     })
