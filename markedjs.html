@@ -14,18 +14,43 @@
 </div>
 
 <script>
-    $.ajax({
+    /*$.ajax({
         url: './md/Git/Git.md'
         ,success:function (res) {
             console.log(res)
             document.getElementById('content').innerHTML = marked(res)
         }
-    })
+    })*/
 
-
+    function getAccess(){
+        let a;
+        $.ajax({
+            url: './config.json'
+            ,async: false
+            ,success:function (res) {
+                console.log(res)
+                // console.log(res['access-path'])
+                a = res['access-path']
+            }
+        })
+        return a
+    }
+    console.log(getAccess())
     $.ajax({
         url: './md/NodeJs/NodeJs.md'
         ,success:function (res) {
+            console.log(res)
+            let c = 'adfsadfasfdsadfadf'
+            c = c.replace(/sa/g, '我我')
+            console.log(c)
+            /*
+            \(反斜杠)是转义字符
+            */
+            let regexp = /\(\.\.\/\.\.\/images/g
+
+            d = '../../'
+
+            res = res.replace(regexp, '(images')
             console.log(res)
             document.getElementById('content').innerHTML = marked(res)
         }
