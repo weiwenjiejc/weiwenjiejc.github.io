@@ -3,8 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
+    <script src="./js/marked.min.js" type="text/javascript"></script>
+    <script src="./js/jquery.min.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.min.js" type="text/javascript"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!--    <script src="./js/my.js" type="text/javascript"></script>-->
+    <script>
+        // 使用github远程加载
+        function GitHubRemoteLoad(filename, content_container) {
+            $.ajax({
+                url: './md/'+filename+'/'+filename+'.md'
+                ,success:function (res) {
+                    console.log(res)
+                    res = res.replace(/]\(images/g,'](./md/'+filename+'/images')
+                    console.log('正则表达式翻译之后')
+                    console.log(res)
+                    document.getElementById(content_container).innerHTML = marked(res)
+                }
+            })
+        }
+    </script>
 </head>
 <body>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <ul id="menu">
+                <li>Git</li>
+                <li>Maven</li>
+                <li>NodeJs</li>
+            </ul>
+        </div>
+        <div id="right-content" class="col-md-9">
+
+        </div>
+    </div>
+
+    <script>
+        /*$('#menu').onclick(function () {
+
+        })*/
+        let lis = $('#menu li')
+        $('#menu li').click(function () {
+            let li_index = $(this).index();
+            console.log(li_index)
+            console.log(lis.eq(li_index).text());
+            let filename = lis.eq(li_index).text()
+            GitHubRemoteLoad(filename,'right-content')
+        })
+    </script>
+</div>
+
 欢迎来到jc的空间
 
 ip地址81.70.42.161
