@@ -52,14 +52,21 @@
         res = res.replace(regexp, '(images')
         console.log(res)
     }
-    $.ajax({
-        url: './md/NodeJs/NodeJs.md'
-        ,success:function (res) {
-            console.log(res)
-            res = res.replace(/]\(/g,'](./NodeJs/images')
-            document.getElementById('content').innerHTML = marked(res)
-        }
-    })
+
+
+    // 使用idea本地加载
+    function IdeaLocalLoad() {
+        $.ajax({
+            url: './md/NodeJs/NodeJs.md'
+            ,success:function (res) {
+                console.log(res)
+                res = res.replace(/]\(images/g,'](./md/NodeJs/images')
+                console.log('正则表达式翻译之后')
+                console.log(res)
+                document.getElementById('content').innerHTML = marked(res)
+            }
+        })
+    }
 
 </script>
 </body>
