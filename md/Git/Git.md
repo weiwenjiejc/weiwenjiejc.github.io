@@ -37,13 +37,10 @@ git pull
   git pull origin master
   ```
 
-  
-
-![img](images/1249006-20190629161859842-1533387643.png)
 
 
 
-
+![20190629161859842](images/20190629161859842.png)
 
 git diff，git log中文乱码
 
