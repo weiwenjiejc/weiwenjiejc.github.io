@@ -28,17 +28,17 @@
 <body>
 
 
-<div class="container">
-
+<!--<div class="container">-->
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-3">
             <ul id="menu">
                 <li>Git</li>
                 <li>Maven</li>
                 <li>NodeJs</li>
             </ul>
         </div>
-        <div id="right-content" class="col-md-9">
+        <div id="right-content" class="col-lg-9">
 
         </div>
     </div>
@@ -47,6 +47,7 @@
         /*$('#menu').onclick(function () {
 
         })*/
+        //GitHubRemoteLoad(filename,'right-content')
         let lis = $('#menu li')
         $('#menu li').click(function () {
             let li_index = $(this).index();
