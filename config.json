@@ -1,3 +1,6 @@
 {
-  "access-path": "local"
+  "access-path": "local",
+  "menu": [
+    "Git","Maven","NodeJs","Bootstrap"
+  ]
 }
