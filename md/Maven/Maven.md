@@ -22,3 +22,122 @@
 </build>
 ```
 
+
+
+### 常用依赖配置
+
+
+
+```xml
+<parent>
+<artifactId>spring-boot-starter-parent</artifactId>
+<groupId>org.springframework.boot</groupId>
+<version>2.2.6.RELEASE</version>
+</parent>
+
+<dependencies>
+    <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+</dependencies>
+```
+
+
+
+```xml
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.0.RELEASE</version>
+</parent>
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <!-- <version>8.0.18</version> -->
+    </dependency>
+    <dependency>
+        <groupId>com.mchange</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.5.5</version>
+    </dependency>
+</dependencies>
+```
+
+
+
+## 命令行
+
+
+
+```shell
+# 导出依赖包
+mvn dependency:copy-dependencies -DoutputDirectory=C:\Users\WWJ\Desktop\lib
+```
+
+
+
+## settings配置
+
+
+
+**settings.xml**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 配置文件默认位置${user.home}/.m2/settings.xml -->
+<settings>
+
+
+    <!-- 配置本地存储库 -->
+    <!-- 默认值${user.home}/.m2/repository/ -->
+    <localRepository>${user.home}/.m2/repository/</localRepository>
+    <!-- 配置给定存储库的镜像 -->
+
+    <servers>
+        <!--公司服务器-->
+        <server>
+            <id>nexus</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+    </servers>
+    
+    <mirrors>
+
+        <!-- 阿里云仓库 -->
+        <mirror>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+
+        <!--公司仓库-->
+        <mirror>
+            <id>nexus</id>
+            <mirrorOf>central</mirrorOf>
+            <name>nexus</name>
+            <url>http://10.1.60.200:8082/repository/dareway-public/</url>
+        </mirror>
+    </mirrors>
+
+    
+</settings>
+```
+

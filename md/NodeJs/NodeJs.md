@@ -23,3 +23,26 @@ npm install -g bootstrap
 npm install -g jquery
 ```
 
+
+
+```shell
+[C:\~]$ npm config ls
+; cli configs
+metrics-registry = "https://registry.npmjs.org/"
+scope = ""
+user-agent = "npm/6.14.5 node/v12.18.2 win32 x64"
+
+; builtin config undefined
+prefix = "C:\\Users\\wei\\AppData\\Roaming\\npm"
+
+; node bin location = D:\Program Files\nodejs\node.exe
+; cwd = C:\Users\wei\Documents\NetSarang Computer\6\Xshell\Sessions
+; HOME = C:\Users\wei
+; "npm config ls -l" to show all defaults.
+
+
+[C:\~]$ npm config get prefix
+C:\Users\wei\AppData\Roaming\npm
+
+```
+
