@@ -8,21 +8,46 @@
 
 
 
+
+
+### maven-assembly-plugin
+
 ```shell
 <build>
-    <plugins>
+        <plugins>
 
-        <!--支持定制化打包方式-->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.2-beta-5</version>
-        </plugin>
-    </plugins>
-</build>
+            <!--支持定制化打包方式-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-5</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>
+                            jar-with-dependencies
+                        </descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <!--<executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>-->
+            </plugin>
+        </plugins>
+    </build>
 ```
 
 
+
+
+
+插件命令
+
+![image-20200727171016433](images/image-20200727171016433.png)
 
 ### 常用依赖配置
 
