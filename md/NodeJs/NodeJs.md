@@ -6,7 +6,12 @@
 ![image-20200727095018582](images/image-20200727095018582.png)
 
 
+### node usage
 
+```shell script
+# 查看版本信息
+node -v
+```
 
 
 # npm管理器
@@ -58,6 +63,9 @@ npm config list [--json]
 npm config edit
 npm set <key> <value>
 npm get [<key>]
+npm config ls -l
+npm config ls
+
 ```
 
 ```shell script
