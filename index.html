@@ -33,13 +33,27 @@
     <div class="row">
         <div class="col-lg-3">
             <ul id="menu">
-                <li>Git</li>
+                <script>
+                    let ul_menu = $('#menu')
+                    $.ajax({
+                        url: 'config.json'
+                        ,async: false/* 必须使用同步，否则后面的js事件不响应*/
+                        ,success: function (res) {
+                            console.log(res.menu)
+                            let menuLi = res.menu
+                            for(let i = 0; i < menuLi.length; i++){
+                                ul_menu.append('<li>'+menuLi[i] + '</li>')
+                            }
+                        }
+                    })
+                </script>
+                <!--<li>Git</li>
                 <li>Maven</li>
                 <li>NodeJs</li>
                 <li>Java</li>
                 <li>Mybatis</li>
                 <li>Spring</li>
-                <li>Eclipse</li>
+                <li>Eclipse</li>-->
             </ul>
         </div>
         <div id="right-content" class="col-lg-9">

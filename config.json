@@ -2,5 +2,13 @@
   "access-path": "local",
   "menu": [
     "Git","Maven","NodeJs","Bootstrap"
+    ,"Apache"
+    ,"GitHub"
+    ,"Spring"
+    ,"Scala"
+    ,"Mybatis"
+    ,"Java"
+    ,"Oracle"
+    ,"Centos"
   ]
 }
