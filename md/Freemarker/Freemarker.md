@@ -731,6 +731,8 @@ public class Main {
 
 
 
+### 3.1 ftl标签使用
+
 
 
 ```shell
@@ -741,7 +743,7 @@ public class Main {
 
 
 
-null判断
+null判断，用来处理空值
 
 ```shell
 ${outList.desc!"当前内容为空"}

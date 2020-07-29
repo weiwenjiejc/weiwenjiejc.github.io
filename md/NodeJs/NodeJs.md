@@ -45,4 +45,41 @@ prefix = "C:\\Users\\wei\\AppData\\Roaming\\npm"
 C:\Users\wei\AppData\Roaming\npm
 
 ```
+### nmp命令
+>npm（Node Package Manager）意思是 node 的包管理器
 
+```shell script
+# 配置命令
+# Usage:
+npm config set <key> <value>
+npm config get [<key>]
+npm config delete <key>
+npm config list [--json]
+npm config edit
+npm set <key> <value>
+npm get [<key>]
+```
+
+```shell script
+# 安装到当前命令行所在的目录
+npm install module(要安装的模块名)
+
+# 安装到全局目录
+npm install -g module(要安装的模块名)
+
+# 查看全局安装目录
+[C:\~]$ npm config get prefix
+C:\Users\wei\AppData\Roaming\npm
+
+# 查看版本信息
+npm -v
+```
+
+
+
+```shell script
+# 常用安装
+npm install -g jquery
+
+npm install marked
+```
