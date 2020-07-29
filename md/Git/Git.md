@@ -39,7 +39,10 @@ git pull
   git pull origin master
   ```
 
-
+查看本地仓库和远程仓库
+```shell
+git diff <local branch> <remote>/<remote branch>
+```
 
 
 ![20190629161859842](images/20190629161859842.png)
