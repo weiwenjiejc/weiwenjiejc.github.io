@@ -350,3 +350,187 @@ public class Java8 {
 
 ## Java函数式编程
 
+
+
+
+
+# 注解
+
+### jdk内置注解
+
+ 
+
+重写
+
+```java
+package java.lang; import java.lang.annotation.*; 
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.SOURCE) 
+public @interface Override {   }
+```
+
+ 
+
+不推荐使用，已经过时
+
+```java
+package java.lang;
+import java.lang.annotation.*; 
+import static java.lang.annotation.ElementType.*;
+@Documented @Retention(RetentionPolicy.RUNTIME)
+@Target(value={CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE}) 
+public @interface Deprecated { }
+```
+
+
+
+
+
+ 
+
+镇压警告
+
+可以设置value来选定要注解的警告
+
+ 
+
+```java
+package java.lang; 
+import java.lang.annotation.*; 
+import static java.lang.annotation.ElementType.*;  
+@Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE}) @Retention(RetentionPolicy.SOURCE) 
+public @interface SuppressWarnings {    
+    //value不是一个函数，是一个参数   String[] value(); 
+}
+```
+
+
+
+## 元注解
+
+* 元注解的作用就是负责注解其他注解, Java定义了4个标准的meta-annotation类型，他们被用来提供对其他annotation类型作说明.
+
+* 这些类型和它们所支持的类在java.lang annotation包中可以找到.( @Target , @Retention，@Documented , @Inherited )
+
+![clipboard.png](images/clip_image002.gif)
+
+ 
+
+```java
+@Documented 
+@Retention(RetentionPolicy.RUNTIME)
+//表示注解在运行时有效，一般框架都是用的这一级别 
+@Target(ElementType.ANNOTATION_TYPE) 
+public @interface Target {   
+    /**   
+    * Returns an array of the kinds of elements an annotation type  
+    * can be applied to.   
+    * @return an array of the kinds of elements an annotation type  
+    * can be applied to  
+    */   
+    ElementType[] value(); 
+}
+```
+
+Target value可选值
+
+![clipboard.png](images/clip_image004.gif)
+
+ 
+
+```java
+@Documented 
+@Retention(RetentionPolicy.RUNTIME) 
+@Target(ElementType.ANNOTATION_TYPE) 
+public @interface Retention {   
+    RetentionPolicy value(); 
+}
+```
+
+Retention value可选值
+
+![clipboard.png](images/clip_image006.gif)
+
+SOURCE只在源文件中有效
+
+CLASS只在class文件中有效
+
+RUNTIME 在运行时有效
+
+有效范围RUNTIME>CLASS>SOURCE，优先级越高，有效范围越大，RUNTIME有效范围最大
+
+ 
+
+# 自定义注解
+
+![clipboard.png](images/clip_image008.gif)
+
+ 
+
+ 
+
+例子
+
+```java
+package demo.wwj; 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention; 
+import java.lang.annotation.RetentionPolicy; 
+import java.lang.annotation.Target;
+@ClassAnnotation("这是一个class注解") 
+public class Test{    
+    //只有一个赋值时，value名称的变量可以省略value   
+    @FieldAnnotation1("小明")   
+    String param1;   
+    //当不止一个变量时，value名也得写入   
+    @FieldAnnotation1(value = "小明", name = "小红")   
+    String param3;   
+    @FieldAnnotation2(name = "小明")   
+    String param2;   
+    //如果没有默认值，就必须给注解赋值   
+    @DemoAnnotation(param2 = "haha")   
+    String getName() {      
+        return "haha"; 
+    } 
+} 
+
+
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@interface DemoAnnotation{  
+    String param1() default "nihao";  
+    String param2();
+} 
+
+
+/** 
+* 用在类、接口上 
+*/ 
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME) 
+@interface ClassAnnotation{   
+    //只有一个值时，可以使用value，value可以默认不写   
+    String value(); 
+} 
+
+
+/**
+    * 用在成员变量上 
+    */ 
+@Target(ElementType.FIELD) 
+@Retention(RetentionPolicy.RUNTIME) 
+@interface FieldAnnotation1{   
+    //只有一个值时，可以使用value   
+    String value();   
+    String name() default "xioahong";
+} 
+
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME) 
+@interface FieldAnnotation2{   
+    //只有一个值时，可以使用value   
+    String name();
+}
+```
+
+ 
