@@ -3,7 +3,6 @@
 * CTRL + T 查看接口实现类
 
 - alt+/		代码提示
-- ctrl+shift+r 文件查找
 - ctrl+alt+上下方向键，快速复制上一行或者下一行
 - Ctrl+Alt+↑ 复制当前行到上一行
 - ctrl+d删除当前行
@@ -20,6 +19,11 @@
 - 上下移动选中的行：Alt+Up/Down
 
 
+
+## 查找
+
+* CTRL + H    全局查找
+* CTRL + SHIFT + R    文件查找
 
  
 

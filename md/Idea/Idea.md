@@ -19,3 +19,9 @@ Fernflower decompiler
 第二部
 
 ![img](images/708142007946.png)
+
+
+
+# 快捷键
+
+* CTRL + R 替换

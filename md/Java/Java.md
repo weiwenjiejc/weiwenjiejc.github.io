@@ -1,5 +1,16 @@
 
 
+# 访问权限
+
+
+
+## protected
+
+可以被子类bai，同package下类使用，不对外公开的访问修饰du符。
+
+
+
+
 JNDI（Java Naming and Directory Interface ），类似于在一个中心注册一个东西，以后要用的时候，只需要根据名字去注册中心查找，注册中心返回你要的东西。
 
 # 代理

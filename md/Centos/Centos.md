@@ -82,3 +82,16 @@ OpenJDK 64-Bit Server VM (build 25.252-b09, mixed mode)
 
 ```
 
+# 命令
+
+## 文件查看
+
+### less
+
+```shell
+# 打开文件
+less filename
+
+安esc
+```
+
