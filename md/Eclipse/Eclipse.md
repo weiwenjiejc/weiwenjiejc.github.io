@@ -57,6 +57,21 @@
 
 # 配置
 
+## 文件注释设置
+
+```shell
+/**
+ * @author ${user}
+ * @Description: ${todo}
+ * @date ${date}
+ * @time ${time}
+ */
+```
+
+
+
+
+
 ## 字符编码utf-8
 
 ![clipboard.png](images/clip_image010.gif)
