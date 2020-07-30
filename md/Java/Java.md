@@ -67,9 +67,47 @@ lambda表达式的重要特征:
 - **可选的大括号：**如果主体包含了一个语句，就不需要使用大括号。
 - **可选的返回关键字：**如果主体只有一个表达式返回值则编译器会自动返回值，大括号需要指定明表达式返回了一个数值。
 
+**使用lambda表达式实现接口**
+
+```java
+interface IDemo{
+
+    int sum(int a, int b);
+
+    default void show(){
+        System.out.println("你好");
+    }
+}
+
+public class Java8 {
+    public static void main(String[] args) {
+
+        //使用lambda表达式
+        IDemo iDemo = (a, b) -> a + b;
+        System.out.println(iDemo.sum(3, 5));
+        
+        //使用匿名类实现
+        IDemo iDemo = new IDemo() {
+            @Override
+            public int sum(int a, int b) {
+                return a + b;
+            }
+        };
+        //使用方法引用
+        IDemo iDemo = Java8::sum;
+        System.out.println(iDemo.sum(3, 5));
+    }
+    
+    //被引用的方法
+    static int sum(int a, int b){
+        return a + b;
+    }
+}
+```
 
 
-### 双冒号
+
+### 双冒号（方法引用）
 
 
 
@@ -104,6 +142,14 @@ public class Java8 {
 ```
 
 
+
+方法引用的一些语法：
+
+1. 静态方法引用（static method）语法：classname::methodname 例如：Person::getAge
+2. 对象的实例方法引用语法：instancename::methodname 例如：System.out::println
+3. 对象的超类方法引用语法： super::methodname
+4. 类构造器引用语法： classname::new 例如：ArrayList::new
+5. 数组构造器引用语法： typename[]::new 例如： String[]:new
 
 
 
