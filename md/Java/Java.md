@@ -43,7 +43,181 @@ public static void main(String[] args) {
 
 
 
+# Java泛型
 
+> 泛型是 Java 1.5 版本才引进的概念，在这之前是没有泛型的概念的，但显然，泛型代码能够很好地和之前版本的代码很好地兼容。
+>
+> 这是因为，**泛型信息只存在于代码编译阶段，在进入 JVM 之前，与泛型相关的信息会被擦除掉，专业术语叫做类型擦除**。
+
+* 提供了一种类型检测的机制，只有相匹配的数据才能正常的赋值，否则编译器就不通过。
+* 泛型提高了程序代码的可读性，不必要等到运行的时候才去强制转换，在定义或者实例化阶段
+
+
+
+```java
+public static void main(String[] args) {
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        ArrayList<Integer> integerArrayList = new ArrayList<>();
+
+
+        Class<? extends ArrayList> aClass = stringArrayList.getClass();
+        Class<? extends ArrayList> aClass1 = integerArrayList.getClass();
+        if (aClass == aClass1)
+            System.out.println(true);
+        else
+            System.out.println(false);
+
+        //输出true
+        //List<String>和 List<Integer>在 jvm 中的 Class 都是 List.class。
+    }
+```
+
+
+
+```java
+class Demo<T>{
+    T object;
+
+    public Demo(T object) {
+        this.object = object;
+    }
+
+    public Demo() {
+
+    }
+
+    public void add(T object){
+
+    }
+}
+public class Java8 {
+    public static void main(String[] args) {
+        Demo<String> demo = new Demo<>();
+        Class<? extends Demo> demoClass = demo.getClass();
+
+        
+        String param = "param";
+        demo.add(param);
+        
+        //下面是错误的，这就是泛型的缺点
+        /*
+        Integer paramInt = 5;
+        demo.add(paramInt);
+        */
+        
+
+        Method[] declaredMethods = demoClass.getDeclaredMethods();
+        for (Method declaredMethod : declaredMethods) {
+            System.out.println(declaredMethod);
+        }
+        //输出：public void Demo.add(java.lang.Object)
+        //可以看出add函数类型已经被擦除为Object了
+    }
+
+}
+```
+
+
+
+**可以利用类型擦除的原理，用反射的手段就绕过了正常开发中编译器不允许的操作限制**
+
+列子一
+
+```java
+class Demo<T>{
+    T object;
+
+    public Demo(T object) {
+        this.object = object;
+    }
+
+    public Demo() {
+
+    }
+
+    public void add(T object){
+        System.out.println(object);
+    }
+}
+public class Java8 {
+    public static void main(String[] args) {
+
+        Demo<String> demo = new Demo<>();
+        Class<? extends Demo> demoClass = demo.getClass();
+
+        String param = "param";
+        demo.add(param);
+
+        //下面是错误的，这就是泛型的缺点
+        /*
+        Integer paramInt = 5;
+        demo.add(paramInt);
+        */
+
+        /*
+        通过反射，使的上面的Integer可以正常输出，add函数类型擦除之后，参数类型变为Object了，不再是String
+         */
+        try {
+            //修改参数类型为Object，就可以输出任意类型的
+            Method add = demoClass.getDeclaredMethod("add", Object.class);
+            Object invoke = add.invoke(demo, 5);
+        }catch (Exception e){
+            System.out.println("输出异常");
+            e.printStackTrace();
+        }
+
+    }
+
+}
+```
+
+例子二
+
+>因为类型擦除，它会抹掉很多继承相关的特性，这是它带来的局限性。使用反射绕过泛型
+
+```java
+public static void main(String[] args) {
+
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(5);
+        // arrayList.add("588"); 编译不通过
+
+        Class<? extends ArrayList> arrayListClass = arrayList.getClass();
+
+        try {
+            Method add = arrayListClass.getDeclaredMethod("add", Object.class);
+            Object invoke = add.invoke(arrayList, "你好");
+            System.out.println(invoke);
+
+        }catch (Exception e){
+            System.out.println("输出异常");
+        }
+        //arrayList.forEach(x-> System.out.println(x));//输出会出错，这个函数还是有类型的
+        for(Object x: arrayList){
+            System.out.println(x);
+        }
+    }
+
+/*输出
+true
+5
+你好
+*/
+```
+
+
+
+
+
+
+
+## 通配符
+
+通配符有 3 种形式。
+
+1. `<?>`被称作无限定的通配符。
+2. `<? extends T>`被称作有上限的通配符。
+3. `<? super T>`被称作有下限的通配符。
 
 # Java8新特性
 
@@ -133,6 +307,20 @@ public class Java8 {
         
         //lambda表达式匿名方法
         stringList.forEach(x-> System.out.println(x));
+        
+        //使用匿名类
+        stringList.forEach(new Consumer<String>(){
+
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+            }
+
+            @Override
+            public Consumer<String> andThen(Consumer<? super String> after) {
+                return null;
+            }
+        });
 
     }
     static void show(String x){
