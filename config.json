@@ -1,7 +1,10 @@
 {
   "access-path": "local",
   "menu": [
-    "Git","Maven","NodeJs","Bootstrap"
+    "Git",
+    "Maven",
+    "NodeJs",
+    "Bootstrap"
     ,"Apache"
     ,"GitHub"
     ,"Spring"
@@ -10,5 +13,7 @@
     ,"Java"
     ,"Oracle"
     ,"Centos"
+    ,"Eclipse",
+    "Idea"
   ]
 }
