@@ -1,3 +1,17 @@
+使用
+
+```java
+String regex = "";//正则表达式
+Pattern pattern = Pattern.compile(regex);
+String input = "";//字符串
+Matcher matcher = pattern.matcher(input);
+while (matcher.find()){
+    String group = matcher.group();
+}
+```
+
+
+
 
 
 ```java
