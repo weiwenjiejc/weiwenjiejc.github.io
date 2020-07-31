@@ -1,5 +1,27 @@
 
 
+# 文件
+
+## OutputStreamWriter
+
+>从字符流到字节流的桥梁
+
+![image-20200731154954134](images/image-20200731154954134.png)
+
+## PrintStrean
+
+
+
+![image-20200731155141746](images/image-20200731155141746.png)
+
+
+
+## OutputStream
+
+![image-20200731155715440](images/image-20200731155715440.png)
+
+
+
 # 访问权限
 
 
