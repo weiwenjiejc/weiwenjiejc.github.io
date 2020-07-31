@@ -647,9 +647,22 @@ public class Main {
 
 ### 生成word
 
+## ${}占位符
+
+${param}，param中的值，出现'<'，'>'等字符需要转义
+
+这些转义符是html中的内容
+
+```shell
+("<", "&lt;")
+(">", "&gt;")
+```
+
 
 
 #### ${}占位符被分离
+
+占位符会因为中英、字体、样式等各种原因被分离，可以使用汉字（汉字不能出现短语或者成语错误，否则也会被分离）作为占位符，然后手动从ftl文件中替换占位符
 
 > 解决方法：把占位符在notepad中写好，复制到word中，否则直接在word中写会存在被分离的可能
 
@@ -657,27 +670,7 @@ public class Main {
 
 > 使用一个特殊的标志，用来表示需要用变量代替的内容，此处使用了“替换”两字，可以自行定义
 
-![image-20200724112024658](images/image-20200724112024658.png)
-
-
-
-**注意word中的写法**
-
-![image-20200724144819713](images/image-20200724144819713.png)
-
-姓名后面的冒号之后必须再加个空格，可以是中文空格也可以是英文空格，否则$和{}会分开
-
-
-
-![image-20200724144635257](images/image-20200724144635257.png)
-
-
-
-
-
-![image-20200724152311796](images/image-20200724152311796.png)
-
-
+占位符分离例子：
 
 ![image-20200724152229199](images/image-20200724152229199.png)
 
@@ -773,5 +766,45 @@ for循环
 </#list>
 
 # serviceOperationList是map中存储的List对象的key值
+```
+
+
+
+判空
+
+```shell
+<#if param??>
+
+</#if>
+```
+
+if else
+
+```shell
+<#if param??>
+
+<#else>
+
+</#if>
+```
+
+
+
+```shell
+<#if condition>
+
+<#elseif condition>
+
+<#else>
+
+</#if>
+```
+
+例子
+
+inputComplexParamList是一个Java List，?size是List的长度
+
+```shell
+<#if opList.inputComplexParamList?size != 0 >
 ```
 
