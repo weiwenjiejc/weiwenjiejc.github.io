@@ -84,6 +84,150 @@ public static void main(String[] args) {
 
 ### ArrayList
 
+```java
+ArrayList<String> stringArrayList = new ArrayList<>();
+String x = "aaa";
+boolean r1 = stringArrayList.add(x);
+boolean r2 = stringArrayList.add(x);
+stringArrayList.forEach(param-> System.out.println(param));
+```
+
+```shell
+aaa
+aaa
+```
+
+
+
+```java
+ArrayList<String> stringArrayList = new ArrayList<>();
+boolean aaa = stringArrayList.add("aaa");
+boolean aaa1 = stringArrayList.add("aaa");
+stringArrayList.forEach(x-> System.out.println(x));
+```
+
+```shell
+aaa
+aaa
+```
+
+
+
+foreach修改不了代码
+
+```java
+List<String> strings = Arrays.asList("str1", "str1", "str1");
+for (String string : strings) {
+    string = "oooo";
+}
+strings.forEach(x-> System.out.println(x));
+```
+
+```shell
+str1
+str1
+str1
+```
+
+
+
+```java
+List<String> strings = Arrays.asList("str1", "str1", "str1");
+for (String string : strings) {
+    string = "oooo";
+}
+strings.forEach(x-> System.out.println(x));
+
+Iterator<String> iterator = strings.iterator();
+while (iterator.hasNext()){
+    String next = iterator.next();
+    System.out.println(next);
+}
+```
+
+
+
+子代码块使用相同的变量名
+
+#### List foreach遍历
+
+##### 值修改问题
+
+
+
+**foreach修改List中对象的参数值**
+
+```java
+class Demo{
+
+    String param;
+
+    public Demo(String param) {
+        this.param = param;
+    }
+
+    public void setParam(String param) {
+        this.param = param;
+    }
+
+    public String getParam() {
+        return param;
+    }
+
+    @Override
+    public String toString() {
+        return "Demo{" +
+                "param='" + param + '\'' +
+                '}';
+    }
+}
+```
+
+
+
+**不修改引用**
+
+```java
+ArrayList<Demo> demoArrayList = new ArrayList<>();
+demoArrayList.add(new Demo("aaa"));
+for (Demo demo : demoArrayList) {
+    //修改Demo对象的param值
+    demo.setParam("bbb");
+}
+demoArrayList.forEach(x -> System.out.println(x));
+```
+
+输出
+
+对象中参数的值给修改了
+
+```shell
+Demo{param='bbb'}
+```
+
+**修改引用**
+
+```java
+ArrayList<Demo> demoArrayList = new ArrayList<>();
+demoArrayList.add(new Demo("aaa"));
+for (Demo demo : demoArrayList) {
+    //修改对象引用
+    Demo bbb = new Demo("bbb");
+    demo = bbb;
+}
+demoArrayList.forEach(x -> System.out.println(x));
+```
+
+输出：
+
+对象的引用没有修改
+
+```shell
+Demo{param='aaa'}
+```
+
+
+
 ### StringBuffer
 
 
