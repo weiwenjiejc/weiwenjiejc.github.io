@@ -104,6 +104,35 @@ logback
 
 logback带有默认配置，当不手动写日志配置时，就会调用
 
+**logback.xml**
+
+```xml
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--设置日志级别为info-->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+    <!--<root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>-->
+</configuration>
+```
+
+
+
+
+
+
+
 ```java
 LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 StatusPrinter.print(loggerContext);

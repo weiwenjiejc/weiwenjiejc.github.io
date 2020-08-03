@@ -1,5 +1,13 @@
 
 
+
+
+# 接口
+
+>在设计接口方法时不抛出异常，就会造成实现的类即使需要抛异常也无法抛弃的情况，因此，在实际开发中，一般都要在接口的方法抛出异常。
+
+
+
 # 文件
 
 ## OutputStreamWriter
@@ -74,6 +82,76 @@ public static void main(String[] args) {
     }
 ```
 
+### ArrayList
+
+### StringBuffer
+
+
+
+```java
+# 设置长度为0，stringBuffer不会为null
+StringBuffer stringBuffer = new StringBuffer();
+stringBuffer.setLength(0);
+```
+
+
+
+
+
+append的返回值，就是当前引用，因此a,b,c,stringBuffer是同一个对象
+
+```java
+StringBuffer stringBuffer = new StringBuffer();
+System.out.println("默认capacity:"+ stringBuffer.capacity());
+StringBuffer a = stringBuffer.append("this");
+System.out.println(a);
+StringBuffer b = stringBuffer.append(" is");
+System.out.println(b);
+StringBuffer c = stringBuffer.append(" StringBuffer.");
+System.out.println(c);
+
+if (stringBuffer == c){
+    System.out.println("yes");
+}else {
+    System.out.println("false");
+}
+```
+
+输出
+
+```shell
+默认capacity:16
+this
+this is
+this is StringBuffer.
+yes
+```
+
+
+
+?为什么不是0
+
+```java
+StringBuffer stringBuffer = new StringBuffer();
+System.out.println("默认capacity:" + stringBuffer.capacity());
+StringBuffer a = stringBuffer.append("this");
+StringBuffer b = stringBuffer.append(" is");
+StringBuffer c = stringBuffer.append(" StringBuffer.");
+System.out.println(stringBuffer.capacity());
+stringBuffer.setLength(0);
+System.out.println(stringBuffer.capacity());
+```
+
+输出
+
+```shell
+默认capacity:16
+34
+34
+```
+
+
+
 
 
 # Java泛型
@@ -84,6 +162,18 @@ public static void main(String[] args) {
 
 * 提供了一种类型检测的机制，只有相匹配的数据才能正常的赋值，否则编译器就不通过。
 * 泛型提高了程序代码的可读性，不必要等到运行的时候才去强制转换，在定义或者实例化阶段
+
+
+
+```java
+//java6及以前，构造方法中不可以省略泛型类型
+ArrayList<String> stringList6 = new ArrayList<Stirng>();
+
+//java7及以后，构造方法中可以省略泛型类型
+ArrayList<String> stringList6 = new ArrayList<>();
+```
+
+
 
 
 

@@ -1,5 +1,122 @@
 ## Freemarker
 
+## freemarker配置
+
+```java
+import freemarker.template.Configuration;
+import freemarker.template.TemplateExceptionHandler;
+
+import java.io.File;
+import java.io.IOException;
+
+public class FreemarkerConfig {
+
+
+    private static Configuration configuration;
+
+    public static Configuration getConfiguration(File file) {
+        if (configuration == null){
+            configuration = new Configuration(Configuration.VERSION_2_3_22);
+            try {
+                configuration.setDirectoryForTemplateLoading(file);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+            configuration.setDefaultEncoding("UTF-8");
+            configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        }
+        return configuration;
+    }
+}
+```
+
+
+
+```java
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.HashMap;
+
+public class GenerateWord {
+
+    private static Logger logger = LoggerFactory.getLogger(GenerateWord.class);
+
+
+    /**
+     * 生成服务的接口文档
+     * @param serviceName
+     * @param ftlFilePath
+     * @param name
+     * @param outFile
+     * @param rootMap
+     */
+    static void service(String serviceName, String ftlFilePath, String name, File outFile,HashMap<String, Object> rootMap) {
+
+
+        logger.info("创建 Configuration 实例");
+        File file = new File(ftlFilePath);//file是模板文件所在的目录，file不是文件，是一个目录
+        Configuration configuration = FreemarkerConfig.getConfiguration(file);
+
+        logger.info("获取模板");
+        //模板一旦生成，就能将它和不同的数据模型进行不限次数的合并
+        Template template = null;
+        try {
+            template = configuration.getTemplate(name);
+        } catch (IOException e) {
+            logger.info("没有找到模板文件" + name);
+            e.printStackTrace();
+        }
+
+        logger.info("创建数据模型");
+        HashMap<String, Object> root = null;
+        root = rootMap;
+
+        logger.info("合并模板和数据");
+        //Writer out = new OutputStreamWriter(System.out);
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(outFile);
+        } catch (FileNotFoundException e) {
+            logger.info("输出文件出错");
+            e.printStackTrace();
+        }
+        Writer out = new OutputStreamWriter(fileOutputStream);
+        try {
+            template.process(root, out);
+        } catch (TemplateException e) {
+            logger.info("合并模板和数据出错");
+            e.printStackTrace();
+        } catch (IOException e) {
+            logger.info("IO操作出错");
+            e.printStackTrace();
+        }
+
+        //释放资源
+        try {
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void operation() {
+
+    }
+
+    public static void main(String[] args) {
+        
+    }
+}
+```
+
 
 
 >Freemarker是模板引擎。FreeMarker就是一种用Java编写的模板引擎， 即一种基于模板和要改变的数据， 并用来生成输出文本（HTML网页、电子邮件、配置文件、源代码等）的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。

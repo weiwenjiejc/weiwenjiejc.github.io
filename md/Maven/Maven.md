@@ -166,3 +166,42 @@ mvn dependency:copy-dependencies -DoutputDirectory=C:\Users\WWJ\Desktop\lib
 </settings>
 ```
 
+
+
+## maven命令使用
+
+```shell
+# 导出项目所有的依赖项到默认目录中，即target目录
+mvn dependency:copy-dependencies
+```
+
+
+
+
+
+
+
+
+
+## maven配置文件使用
+
+
+
+设置jdk版本
+
+```shell
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
