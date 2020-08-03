@@ -30,6 +30,8 @@ log4j
 </dependency>
 ```
 
+log4j必须得有日志配置文件，配置文件名默认为**log4j.properties**
+
 简单配置，只有一个附加程序，A1，调试级别为DEBUG
 
 ```properties
@@ -87,4 +89,32 @@ logback
     <artifactId>logback-core</artifactId>
     <version>1.2.3</version>
 </dependency>
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-access</artifactId>
+    <version>1.2.3</version>
+</dependency>
+
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.30</version>
+</dependency>
 ```
+
+logback带有默认配置，当不手动写日志配置时，就会调用
+
+```java
+LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+StatusPrinter.print(loggerContext);
+```
+
+输出
+
+```shell
+14:59:38,155 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+14:59:38,155 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+14:59:38,156 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.xml]
+14:59:38,181 |-INFO in ch.qos.logback.classic.BasicConfigurator@439f5b3d - Setting up default configuration.
+```
+
