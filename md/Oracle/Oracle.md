@@ -47,3 +47,6 @@ select * from v$reserved_words where keyword = upper('explain')
 select * from v$reserved_words where keyword = upper('comment')
 ```
 
+## Oracle字段
+
+![img](images/20170509135251042)

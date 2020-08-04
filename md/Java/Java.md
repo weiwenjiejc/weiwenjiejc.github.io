@@ -1,5 +1,34 @@
 
 
+# 数组
+
+
+
+```java
+// char数组初始化
+new char[] {'a'}
+```
+
+
+
+
+
+# tomcat
+
+## tomcat调参
+
+Run->Run Configuration->Arguments->VM arguments
+
+```shell
+-Xms256m -Xmx512m -XX:PermSize=256m -XX:MaxPermSize=256M
+```
+
+## jrebel配置
+
+server->双击tomcat，进入配置页面->选中左下角的Modules->Auto Reload设置为Disabled
+
+修改tomcat参数（见上）
+
 
 
 # 接口
