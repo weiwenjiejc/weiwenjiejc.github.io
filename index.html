@@ -2,113 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
-    <script src="./js/marked.min.js" type="text/javascript"></script>
-
-    <script src="./js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="./js/highlight/highlight.pack.js" type="text/javascript"></script>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!--    <script src="./js/my.js" type="text/javascript"></script>-->
-    <script>
-        // 使用github远程加载
-        function GitHubRemoteLoad(filename, content_container) {
-            $.ajax({
-                url: './md/' + filename + '/' + filename + '.md'
-                , success: function (res) {
-                    // console.log(res)
-                    res = res.replace(/]\(images/g, '](./md/' + filename + '/images')
-                    //console.log('正则表达式翻译之后')
-                    //console.log(res)
-                    let renderer = new marked.Renderer();
-                    marked.setOptions({
-                        renderer: renderer,
-                        gfm: true,
-                        tables: true,
-                        breaks: true,
-                        pedantic: false,
-                        sanitize: false,
-                        smartLists: true,
-                        smartypants: false
-                    });
-                    marked.setOptions({
-                        highlight: function (code) {
-                            return hljs.highlightAuto(code).value;
-                        }
-                    })
-                    document.getElementById(content_container).innerHTML = marked(res)
-                }
-            })
-        }
-    </script>
-    <style>
-        #menu li:hover{
-            background-color: #00cc66;
-        }
-    </style>
+    <title>中转页</title>
 </head>
 <body>
-
-
-<!--<div class="container">-->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3">
-            <ul id="menu">
-                <script>
-                    let ul_menu = $('#menu')
-                    $.ajax({
-                        url: 'config.json'
-                        , async: false/* 必须使用同步，否则后面的js事件不响应*/
-                        , success: function (res) {
-                            //console.log(res.menu)
-                            let menuLi = res.menu
-                            for (let i = 0; i < menuLi.length; i++) {
-                                ul_menu.append('<li>' + menuLi[i] + '</li>')
-                            }
-                        }
-                    })
-                </script>
-                <!--<li>Git</li>
-                <li>Maven</li>
-                <li>NodeJs</li>
-                <li>Java</li>
-                <li>Mybatis</li>
-                <li>Spring</li>
-                <li>Eclipse</li>-->
-            </ul>
-        </div>
-        <div id="right-content" class="col-lg-9">
-
-        </div>
-    </div>
-
     <script>
-        /*$('#menu').onclick(function () {
-
-        })*/
-        //GitHubRemoteLoad(filename,'right-content')
-        let lis = $('#menu li')
-        $('#menu li').click(function () {
-
-            let li_index = $(this).index();
-            console.log('当前点击目录索引：')
-            console.log(li_index)
-
-            //不知道为什么点的第一个li的下标是1，不是0
-            let filename = lis.eq(li_index - 1).text()
-            console.log('当前点击目录名字')
-            console.log(filename);
-
-
-            GitHubRemoteLoad(filename, 'right-content')
-        })
+        window.location.href='http://8.140.37.112:8090';
     </script>
-</div>
-
-
-<div>
-    <a href="http://81.70.42.161/">个人网站</a>
-</div>
 </body>
 </html>
