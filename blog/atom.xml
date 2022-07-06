@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://weiwenjiejc.github.io/blog</id>
-    <title>带带胃 Blog</title>
+    <title>呆呆胃 Blog</title>
     <updated>2021-08-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://weiwenjiejc.github.io/blog"/>
-    <subtitle>带带胃 Blog</subtitle>
+    <subtitle>呆呆胃 Blog</subtitle>
     <icon>https://weiwenjiejc.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
